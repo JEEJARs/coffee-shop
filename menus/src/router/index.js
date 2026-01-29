@@ -30,8 +30,6 @@ const router = createRouter({
       component: MenuShow
     },
 
-
-
     {
       path: '/',
       name: 'home',
