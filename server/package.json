@@ -3,10 +3,13 @@
     "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "express": "^5.2.1",
+<<<<<<< HEAD
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+=======
+>>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
   }

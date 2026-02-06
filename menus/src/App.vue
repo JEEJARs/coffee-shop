@@ -1,6 +1,9 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
     <CoffeeHeader />
+=======
+>>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
     <router-view />
   </div>
 </template>
