@@ -1,38 +1,30 @@
 <template>
   <div>
     <h1>Get All Menus</h1>
-<<<<<<< HEAD
+
     <p>
       <button v-if="isAdminLoggedIn" @click="navigateTo('/menu/create')">สร้างเมนูใหม่</button>
       <button v-else @click="navigateTo('/login')">Login (Admin)</button>
       <button v-if="isAdminLoggedIn" @click="onLogout">Logout</button>
     </p>
-=======
-    <p><button @click="navigateTo('/menu/create')">สร้างเมนูใหม่</button></p>
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
 
     <div v-if="menus.length">
       <h4>จำนวนเมนู {{ menus.length }}</h4>
 
-      <div v-for="menu in menus" :key="menu.id">
-        <p>ID : {{ menu.id }}</p>
-        <p>Name: {{ menu.name }}</p>
-        <p>Type: {{ menu.type }}</p>
-        <p>Origin: {{ menu.origin }}</p>
-        <p>Price: {{ menu.price }}</p>
-        <p>Description: {{ menu.description }}</p>
+      <div v-for="menu in menus" :key="menu.id" class="card">
+        <p><b>ID</b> : {{ menu.id }}</p>
+        <p><b>Name</b>: {{ menu.name }}</p>
+        <p><b>Type</b>: {{ menu.type }}</p>
+        <p><b>Origin</b>: {{ menu.origin }}</p>
+        <p><b>Price</b>: {{ menu.price }}</p>
+        <p><b>Description</b>: {{ menu.description }}</p>
 
         <p>
           <button @click="navigateTo('/menu/' + menu.id)">ดูข้อมูลเมนู</button>
-<<<<<<< HEAD
+
           <button v-if="isAdminLoggedIn" @click="navigateTo('/menu/edit/' + menu.id)">แก้ไขข้อมูล</button>
           <button v-if="isAdminLoggedIn" @click="deleteMenu(menu.id)">ลบข้อมูล</button>
-=======
-          <button @click="navigateTo('/menu/edit/' + menu.id)">แก้ไขข้อมูล</button>
-          <button @click="deleteMenu(menu.id)">ลบข้อมูล</button>
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
         </p>
-        <hr />
       </div>
     </div>
 
@@ -43,55 +35,49 @@
 </template>
 
 <script>
-import MenusService from '../../services/MenusService';
-<<<<<<< HEAD
+import MenusService from '../../services/MenusService'
 import { useAuthenStore } from '../../stores/authen'
-=======
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
 
 export default {
-  data() {
+  data () {
     return { menus: [] }
   },
-<<<<<<< HEAD
   computed: {
-    isAdminLoggedIn() {
+    isAdminLoggedIn () {
       const authenStore = useAuthenStore()
       return authenStore.isAdminLoggedIn
     }
   },
-=======
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
   methods: {
-    navigateTo(route) {
+    navigateTo (route) {
       this.$router.push(route)
     },
-    async deleteMenu(menuId) {
+    async deleteMenu (menuId) {
       if (!confirm('Want to delete?')) return
       try {
         await MenusService.delete(menuId)
         await this.refreshData()
       } catch (err) {
         console.log(err)
+        alert(err?.response?.data?.error || 'Delete failed')
       }
     },
-    async refreshData() {
+    async refreshData () {
       const res = await MenusService.index()
       this.menus = res.data.data || res.data
-<<<<<<< HEAD
     },
-    onLogout() {
+    onLogout () {
       const authenStore = useAuthenStore()
       authenStore.logout()
-=======
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
+      this.$router.push({ name: 'login' })
     }
   },
-  async created() {
+  async created () {
     await this.refreshData()
   }
 }
 </script>
-<style scoped>
 
+<style scoped>
+/* ใช้ .card จาก global style.css */
 </style>

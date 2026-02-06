@@ -1,8 +1,8 @@
-const express = require("express")
-const cors = require("cors")
+const express = require('express')
+const cors = require('cors')
 
-const { sequelize } = require("./models")
-const config = require("./config/config")
+const { sequelize } = require('./models')
+const config = require('./config/config')
 
 const app = express()
 
@@ -10,29 +10,25 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-<<<<<<< HEAD
 // JWT Strategy (เหมือน nv-webblog)
 require('./userPassport')
 
-=======
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
-// เรียกใช้ Routes ที่เราแยกไฟล์ไว้
-require("./routes")(app)
+// Routes
+require('./routes')(app)
 
 // health check
-app.get("/status", (req, res) => {
-  res.send("Hello CoffeeShop API!")
+app.get('/status', (req, res) => {
+  res.send('Hello CoffeeShop API!')
 })
 
-app.get("/hello/:name", (req, res) => {
-  console.log("hello - " + req.params.name)
-  res.send("say hello with " + req.params.name)
+app.get('/hello/:name', (req, res) => {
+  console.log('hello - ' + req.params.name)
+  res.send('say hello with ' + req.params.name)
 })
 
 // Sync DB แล้วค่อยเปิด server
 sequelize
   .sync({ force: false })
-<<<<<<< HEAD
   .then(async () => {
     // สร้าง Admin เริ่มต้น (ถ้ายังไม่มี)
     // เปลี่ยนรหัสผ่านก่อนใช้งานจริง
@@ -53,15 +49,10 @@ sequelize
 
     app.listen(config.port, () => {
       console.log('Server running on port ' + config.port)
-=======
-  .then(() => {
-    app.listen(config.port, () => {
-      console.log("Server running on port " + config.port)
->>>>>>> e781e81b4e96e404962983f97dc2a8a5e084729f
     })
   })
   .catch((err) => {
-    console.error("DB sync failed:", err)
+    console.error('DB sync failed:', err)
   })
 
 module.exports = app
